@@ -1,0 +1,66 @@
+### configuration parameters needed by the initial setup
+# ---------------------------------------------------#
+# Common information(For the whole environment)      #
+# ---------------------------------------------------#
+MGMT_DOMAIN_NAME=openstack.local
+EXT_DOMAIN_NAME=demo.com
+
+# ---------------------------------------------------#
+# Controller specific information(ONLY 1 node)       #
+# ---------------------------------------------------#
+CONTR_HOSTNAME=kilo
+CONTR_MGMT_IP=9.0.0.33
+
+CONTROLLER_MGMT_FQDN=${CONTR_HOSTNAME}.${MGMT_DOMAIN_NAME}
+CONTROLLER_EXT_FQDN=${CONTR_HOSTNAME}.${EXT_DOMAIN_NAME}
+
+# If using local loop device for cinder volume-group
+CINDER_VG_DEVICE=loop
+CINDER_VG_SIZE_GB=10
+
+# If using physical disk for cinder volume-group
+#CINDER_VG_DEVICE=/dev/sdb
+
+# ---------------------------------------------------#
+# Compute specific information                       #
+# ---------------------------------------------------#
+COMPT_HOSTNAME=${CONTR_HOSTNAME}
+
+# ---------------------------------------------------#
+# Network information for each host                  #
+# ---------------------------------------------------#
+NIC_P1=eth0
+NIC_P2=eth1
+BASE_BOND=bond0
+BOND_MODE=1
+#BOND_MODE=active-backup
+VLANID_INT=101
+VLANID_EXT=102
+#
+BOND_MGMT=${BASE_BOND}
+BOND_INT=${BASE_BOND}.${VLANID_INT}
+BOND_EXT=${BASE_BOND}.${VLANID_EXT}
+
+# ---------------------------------------------------#
+# Management network for each host                   #
+# ---------------------------------------------------#
+MGMT_IPADDR=9.0.0.33
+MGMT_NETMASK=255.255.255.0
+MGMT_GATEWAY=9.0.0.1
+MGMT_DNS1=9.0.0.1
+
+# ---------------------------------------------------#
+# Internal tunnel network for each host              #
+# ---------------------------------------------------#
+INT_IPADDR=9.0.101.33
+INT_NETMASK=255.255.255.0
+INT_GATEWAY=9.0.101.1
+INT_DNS1=9.0.101.1
+
+# ---------------------------------------------------#
+# External/floating IP network for each host         #
+# ---------------------------------------------------#
+EXT_IPADDR=9.0.102.33
+EXT_NETMASK=255.255.255.0
+EXT_GATEWAY=9.0.102.1
+EXT_DNS1=9.0.102.1
